@@ -22,34 +22,18 @@
 		<!-- Top Nav -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		  <a class="navbar-brand" href="#">Democratized Knowledge Stream</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		  <button class="navbar-toggler"
+							type="button"
+							data-toggle="collapse"
+							data-target="#navbarNav"
+							aria-controls="navbarNav"
+							aria-expanded="false"
+							aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
-		  <div class="collapse navbar-collapse float-right">
-				<div class="float-right pull-right" id="navButtonsWrapper">
-			    <ul class="navbar-nav float-right">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Features</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Pricing</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link disabled" href="#">Disabled</a>
-			      </li>
-			    </ul>
-				</div>
-		  </div>
 		</nav>
-		<!-- SVG Container -->
-		<div id="svgWrapper">
-			<svg id="svgContainer">
-			  <circle cx="700" cy="500" r="40" stroke="green" stroke-width="4" fill="yellow" />
-			</svg>
-	  </div>
+		<!-- Canvas Container -->
+		<div id="canvasContainer"></div>
 		<!-- Footer -->
 		<footer class="bg-dark page-footer font-small">
 		  <div class="footer-copyright text-center text-white py-3">© 2019 Copyright: Mihai Avram
@@ -72,5 +56,33 @@
 						integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 						crossorigin="anonymous">
 		</script>
+		<!-- Sigma Scripts -->
+		<script src="./scripts/sigma-v1.2.1/sigma.min.js"></script>
+		<script
+			src="./scripts/sigma-v1.2.1/plugins/sigma.parsers.json.min.js">
+		</script>
+		<script
+			src="./scripts/sigma-v1.2.1/plugins/sigma.renderers.edgeLabels.min.js">
+		</script>
+		<script>
+		  sigma.parsers.json('temp-data.json', {
+				renderer: {
+			    container: document.getElementById('canvasContainer'),
+			    type: 'canvas'
+			  },
+		    settings: {
+		      defaultNodeColor: '#ec5148',
+					edgeLabelSize: 'proportional',
+					minNodeSize: 0,
+					maxNodeSize: 0,
+					minEdgeSize: 0,
+					maxEdgeSize: 0,
+					nodesPowRatio: 1,
+					edgesPowRatio: 1,
+					autoRescale: true
+		    }
+		  });
+		</script>
+
 	</body>
 </html>
