@@ -16,6 +16,23 @@ exports.addNode = async function (nodeType,nodeName){
     //}
 };
 
+exports.addRelation = async function (nodeName1,nodeType1,predicate,nodeName2,nodeType2){
+    //try {
+    let cypherStatement = 'MATCH (a:'+nodeType1+'),(b:'+nodeType2+') \
+    WHERE a.name = {name1} AND b.name = {name2} \
+    CREATE (a)-[r:'+predicate+']->(b) \
+    RETURN r'
+
+    let addResult = await session.run(cypherStatement,
+        {name1: nodeName1, name2:nodeName2}
+    );
+    return addResult;
+    //}catch(ex){
+    //    console.log(ex);
+    //    return 0;
+    //}
+};
+
 /*
 resultPromise.then(result => {
     session.close();
