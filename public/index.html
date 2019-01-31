@@ -6,7 +6,7 @@
 		<!-- Ensuring responsive mobile experiences from Bootstrap -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Knowledge Stream</title>
+		<title>Tree of Knowledge</title>
 		<!-- Bootstrap CDNs -->
 		<link rel="stylesheet"
 				  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -15,13 +15,16 @@
 		<link rel="canonical"
 				  href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
-    <link href="styles/index.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
 
 	</head>
 	<body>
+		<div id="root"></div>
+		<!-- Including React App rendering -->
+		<script type="text/javascript" src="/bundle.js"></script>
 		<!-- Top Nav -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">Democratized Knowledge Stream</a>
+		  <a class="navbar-brand" href="#">Tree of Knowledge</a>
 		  <button class="navbar-toggler"
 							type="button"
 							data-toggle="collapse"
@@ -36,12 +39,11 @@
 		<div id="canvasContainer"></div>
 		<!-- Footer -->
 		<footer class="bg-dark page-footer font-small">
-		  <div class="footer-copyright text-center text-white py-3">© 2019 Copyright: Mihai Avram
+		  <div class="footer-copyright text-center text-white py-3">
+					© 2019 Copyright: Mihai Avram & Nikolaus Parulian
 		  </div>
 		</footer>
-
-
-		<!-- JQuery CDN -->
+				<!-- JQuery CDN -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 					  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 						crossorigin="anonymous">
@@ -57,13 +59,15 @@
 						crossorigin="anonymous">
 		</script>
 		<!-- Sigma Scripts -->
-		<script src="./scripts/sigma-v1.2.1/sigma.min.js"></script>
+		<script src="/frontend-libs/sigma-v1.2.1/sigma.min.js"></script>
 		<script
-			src="./scripts/sigma-v1.2.1/plugins/sigma.parsers.json.min.js">
+			src="/frontend-libs/sigma-v1.2.1/plugins/sigma.parsers.json.min.js">
 		</script>
 		<script
-			src="./scripts/sigma-v1.2.1/plugins/sigma.renderers.edgeLabels.min.js">
+			src="/frontend-libs/sigma-v1.2.1/plugins/sigma.renderers.edgeLabels.min.js">
 		</script>
+
+		<!-- Imputing artificial data from file -->
 		<script>
 		  sigma.parsers.json('temp-data.json', {
 				renderer: {
@@ -83,6 +87,7 @@
 		    }
 		  });
 		</script>
+
 
 	</body>
 </html>

@@ -5,7 +5,7 @@ var app = express();
 var neo4j = require("./node-middleware/neo4j-crud");
 
 // Serve static files
-app.use(express.static('public_resources'));
+app.use(express.static('public'));
 
 
 app.get('/addnode/:type/:name', async function (req, res) {

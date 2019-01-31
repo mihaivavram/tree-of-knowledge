@@ -1,17 +1,49 @@
 {
-  "name": "democratized-knowledge-action-stream",
+  "name": "tree-of-knowledge",
   "version": "1.0.0",
   "description": "## What is it?",
   "main": "app-entry.js",
   "scripts": {
-    "start": "node app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
-  "author": "Mihai Avram",
+  "author": "Mihai Avram and Nikolaus Parulian",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "mongodb": "^3.1.12",
-    "neo4j-driver": "^1.7.2"
+    "neo4j-driver": "^1.7.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.29.0",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "css-loader": "^2.1.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.2.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   }
 }
