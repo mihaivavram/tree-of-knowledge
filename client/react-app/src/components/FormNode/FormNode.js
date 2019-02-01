@@ -5,6 +5,9 @@ import './FormNode.css';
 // import pop up element for onclick event
 import Popup from 'reactjs-popup'
 
+// import axios for rest api handler
+import axios from 'axios'
+
 class PopUpForm extends Component {
     constructor(props) {
         super(props)
@@ -37,16 +40,42 @@ class PopUpForm extends Component {
 
 
 class FormNode extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            formFields: {name: '',type: ''}
+        }
+    }
+
+    handleSubmit = (event) => {
+        // no page change
+        event.preventDefault();
+        //get all data
+        let formFields = {
+            name: event.target.name.value,
+            type: event.target.type.value
+        }
+
+        axios.get('http://localhost:3000/addNode/'+formFields.name+'/'+formFields.type)
+            .then(function(response){
+                console.log(response);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Node Name: <input type="text" name="name"/>
-                </label>
+                </label> <br />
                 <label>
                     Node Type: <input type="text" name="type"/>
-                </label>
-                <input type="submit" value="Submit"/>
+                </label> <br />
+                <input type="submit" value="Submit" />
             </form>
         );
     }
