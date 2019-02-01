@@ -40,15 +40,15 @@ class PopUpForm extends Component {
 
 
 class FormNode extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             formFields: {name: '',type: ''}
         }
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         // no page change
         event.preventDefault();
         //get all data
@@ -57,6 +57,10 @@ class FormNode extends Component {
             type: event.target.type.value
         }
 
+        let respond = await axios.get('http://localhost:3000/addNode/'+formFields.type+'/'+formFields.name);
+        this.props.onClose();
+        //console.log(JSON.stringify(this.props));
+            /*
         axios.get('http://localhost:3000/addNode/'+formFields.name+'/'+formFields.type)
             .then(function(response){
                 console.log(response);
@@ -64,6 +68,7 @@ class FormNode extends Component {
             .catch(function(error){
                 console.log(error);
             });
+            */
     }
 
     render() {

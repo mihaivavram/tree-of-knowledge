@@ -42,7 +42,7 @@ class App extends Component {
                    closeOnDocumentClick
                    onClose={this.closeModal}
             >
-                <FormNode/>
+                <FormNode onClose={this.closeModal}/>
             </Popup>
         </div>
     );
