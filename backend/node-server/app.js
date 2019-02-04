@@ -46,6 +46,17 @@ app.get('/addrelation/:name1/:type1/:relation/:name2/:type2', async function (re
 
 })
 
+app.get('/selectAll', async function (req, res) {
+    try {
+        test = await neo4j.selectGraph();
+        res.send(test);
+    }catch(ex){
+        console.log(ex);
+        res.send(ex.toString());
+    }
+})
+
+
 
 const port = 3000;
 
