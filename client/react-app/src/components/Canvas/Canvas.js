@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Sigma, LoadJSON} from 'react-sigma'
+import {Sigma} from 'react-sigma'
 import './Canvas.css';
 
-import FormNode from "../FormNode/FormNode";
+import InitialForm from "../InitialForm/InitialForm";
+import AddNode from "../AddNode/AddNode";
+import AddRelation from "../AddRelation/AddRelation";
 import Popup from 'reactjs-popup'
 import axios from "axios";
 import lodash from 'lodash';
@@ -62,10 +64,31 @@ class App extends Component {
             ]
         };
 
-        this.state = {open: false, myGraph: sample};
+        this.state = {open: false,
+                      myGraph: sample,
+                      popupComponent: null
+                     };
+
+        this.nodeRelationPopupStateHandler =
+          this.nodeRelationPopupStateHandler.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this._sigma = null;
+    }
+
+    nodeRelationPopupStateHandler(popupNextState) {
+      if (popupNextState === "AddNode") {
+        let discernedPopupComponent = <AddNode />;
+        this.setState({
+          popupComponent: discernedPopupComponent
+        })
+      }
+      else if (popupNextState === "AddRelation") {
+        let discernedPopupComponent = <AddRelation />;
+        this.setState({
+          popupComponent: discernedPopupComponent
+        })
+      }
     }
 
     openModal() {
@@ -78,23 +101,13 @@ class App extends Component {
     }
 
     async refreshNode() {
-        let respond = await axios.get('http://localhost:3000/selectAll');
+        let respond = await axios.get('http://localhost:3001/selectAll');
 
         respond = respond.data;
 
         console.log(JSON.stringify(respond));
 
         let output = {nodes: [],edges: []};
-
-        /*
-        const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
-        [1, 2, 3].forEach(async (num) => {
-            await waitFor(50);
-            console.log(num);
-        });
-        */
-
-        let tempNodes = [];
 
         respond.records.forEach(function (element) {
 
@@ -160,7 +173,8 @@ class App extends Component {
     render() {
         return (
             <div id="canvasContainer">
-                <Sigma style={{width: "inherit", height: "100%"}} onClickStage={this.openModal}
+                <Sigma style={{width: "inherit", height: "100%"}}
+                       onClickStage={this.openModal}
                        graph={this.state.myGraph}
                        ref={c => (this._sigma = c)} >
                 </Sigma>
@@ -169,7 +183,11 @@ class App extends Component {
                        closeOnDocumentClick
                        onClose={this.closeModal}
                 >
-                    <FormNode onClose={this.closeModal}/>
+                    <InitialForm
+                     nodeRelationPopupStateHandler =
+                      { this.nodeRelationPopupStateHandler }
+                     onClose={this.closeModal}/>
+                     { this.state.popupComponent }
                 </Popup>
             </div>
         );

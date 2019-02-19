@@ -19,6 +19,7 @@ app.use(function(req, res, next) {
 
 app.get('/addnode/:type/:name', async function (req, res) {
     try {
+      console.log('test')
         let type = req.params.type;
         let name = req.params.name;
         test = await (neo4j.addNode(type, name));
@@ -58,6 +59,6 @@ app.get('/selectAll', async function (req, res) {
 
 
 
-const port = 3000;
+const port = 3001;
 
 app.listen(port, () => console.log(`Tree of Knowledge listening on port ${port}!`));

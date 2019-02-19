@@ -37,7 +37,7 @@ That's it, now Node Backend server can connect to the Neo4J server using the Bol
 ## Install and Run Backend Node Server
 1. Browse to the `tree-of-knowledge/backend/node-server/` directory
 1. Run `npm install` to install packages/dependencies
-1. Execute `node app.js` to launch back-end server
+1. Execute `nodemon app.js` to launch back-end server  (uses porn 3001)
 
 ## Install and Run Frontend React Client
 1. Browse to the `tree-of-knowledge/client/react-app/` directory
